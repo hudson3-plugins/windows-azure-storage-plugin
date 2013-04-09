@@ -9,7 +9,7 @@
         <version>3.0.0</version>
     </parent>
 
-    <groupId>com.microsoftopentechnologies.windowsazurestorage</groupId>
+    <groupId>com.microsoftopentechnologies</groupId>
     <artifactId>windows-azure-storage-plugin</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <packaging>hpi</packaging>
