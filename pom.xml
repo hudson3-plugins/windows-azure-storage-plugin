@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.eclipse.hudson.plugins</groupId>
+        <artifactId>hudson-plugin-parent</artifactId>
+        <!-- which version of Hudson is this plugin built against? -->
+        <version>3.0.0</version>
+    </parent>
+
+    <groupId>com.microsoftopentechnologies.windowsazurestorage</groupId>
+    <artifactId>windows-azure-storage-plugin</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <packaging>hpi</packaging>
+    <name>Windows Azure Storage plugin</name>
+	<description>Uploads build artifacts to Windows Azure storage</description>
+	<url></url> <!-- TBD -->
+	
+	<properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+	
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0 (the "License")</name>
+			<comments>Licensed under the Apache License, Version 2.0 (the "License").</comments>
+		</license>
+	</licenses>
+	
+	<developers>
+    	<developer>
+      		<id>sureshreddygithub</id>
+      		<name>Suresh Nallamilli</name>
+      		<email>v-sunal@microsoft.com</email>
+    	</developer>
+    	<developer>
+      		<id>martinsawicki</id>
+      		<name>Martin Sawicki</name>
+      		<email>marcins@microsoft.com</email>
+    	</developer>
+	</developers>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.microsoft.windowsazure</groupId>
+			<artifactId>microsoft-windowsazure-api</artifactId>
+			<version>0.4.0</version>
+		</dependency>
+	</dependencies>
+	
+	<scm>
+		<connection>scm:git:ssh://github.com/hudson3-plugins/windows-azure-storage-plugin.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/hudson3-plugins/windows-azure-storage-plugin.git</developerConnection>
+		<url>https://github.com/hudson3-plugins/windows-azure-storage-plugin.git</url>
+	</scm>
+
+</project>
