@@ -15,7 +15,7 @@
     <packaging>hpi</packaging>
     <name>Windows Azure Storage plugin</name>
 	<description>Uploads build artifacts to Windows Azure storage</description>
-	<url></url> <!-- TBD -->
+	<url>http://wiki.hudson-ci.org/display/HUDSON/Windows+Azure+Storage+Plugin</url>
 	
 	<properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
