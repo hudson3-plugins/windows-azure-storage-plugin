@@ -18,8 +18,9 @@
 	<url>http://wiki.hudson-ci.org/display/HUDSON/Windows+Azure+Storage+Plugin</url>
 	
 	<properties>
+		<hudsonTags>upload</hudsonTags>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>		
 	</properties>
 	
 	<licenses>
@@ -55,5 +56,38 @@
 		<developerConnection>scm:git:ssh://git@github.com/hudson3-plugins/windows-azure-storage-plugin.git</developerConnection>
 		<url>https://github.com/hudson3-plugins/windows-azure-storage-plugin.git</url>
 	</scm>
+	
+	<profiles>
+		<profile>
+			<id>release-sign-artifacts</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.1</version>
+						<configuration>
+							<mavenExecutorId>forked-path</mavenExecutorId>
+						</configuration>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>

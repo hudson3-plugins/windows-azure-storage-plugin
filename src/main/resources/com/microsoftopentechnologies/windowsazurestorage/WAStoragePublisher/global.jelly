@@ -5,15 +5,15 @@
   	<f:entry title="${%entry_title}" >
   		<f:repeatable var="storageAccount" items="${descriptor.storageAccounts}" noAddButton="true" minimum="1">
   			<table width="100%">
-  	   			<f:entry title="${%rep_storageAccountName}" help="/plugin/windows-azure-storage/help-storageAccountName.html">
+  	   			<f:entry title="${%rep_storageAccountName}" help="/plugin/windows-azure-storage-plugin/help-storageAccountName.html">
     				<f:textbox name="was_storageAccName" value="${storageAccount.storageAccName}" />
   				</f:entry>
   			
-  				<f:entry title="${%rep_storageAccountKey}" help="/plugin/windows-azure-storage/help-storageAccountKey.html">
+  				<f:entry title="${%rep_storageAccountKey}" help="/plugin/windows-azure-storage-plugin/help-storageAccountKey.html">
     				<f:textbox name="was_storageAccountKey" value="${storageAccount.storageAccountKey}" />
   				</f:entry>
   			
-  				<f:entry title="${%rep_blobEndPointURL}" help="/plugin/windows-azure-storage/help-blobEndPointURL.html">
+  				<f:entry title="${%rep_blobEndPointURL}" help="/plugin/windows-azure-storage-plugin/help-blobEndPointURL.html">
   					<f:textbox name="was_blobEndPointURL" value="${storageAccount.blobEndPointURL}" 
     						default="${descriptor.getDefaultBlobURL()}" />
   				</f:entry>
