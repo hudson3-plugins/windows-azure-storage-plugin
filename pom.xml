@@ -52,9 +52,9 @@
 	</dependencies>
 	
 	<scm>
-		<connection>scm:git:ssh://github.com/hudson3-plugins/windows-azure-storage-plugin.git</connection>
+		<connection>scm:git:git://github.com/hudson3-plugins/windows-azure-storage-plugin.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/hudson3-plugins/windows-azure-storage-plugin.git</developerConnection>
-		<url>https://github.com/hudson3-plugins/windows-azure-storage-plugin.git</url>
+		<url>https://github.com/hudson3-plugins/windows-azure-storage-plugin</url>
 	</scm>
 	
 	<build>
