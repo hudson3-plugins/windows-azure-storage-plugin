@@ -6,7 +6,7 @@
         <groupId>org.jvnet.hudson.plugins</groupId>
         <artifactId>hudson-plugin-parent</artifactId>
         <!-- which version of Hudson is this plugin built against? -->
-        <version>3.0.0</version>
+        <version>1.398</version>
     </parent>
 
     <groupId>com.microsoftopentechnologies</groupId>
