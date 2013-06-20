@@ -36,6 +36,6 @@ The `Upload artifacts to Windows Azure` post-build step uploads a build artifact
 Changelog
 =========
 
-Version 0.1.0 February 12, 2013)
+Version 0.1.0 June 30, 2013
 --------------------------------
  - Initial release
