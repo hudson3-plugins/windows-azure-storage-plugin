@@ -18,7 +18,7 @@ package com.microsoftopentechnologies.windowsazurestorage;
 import java.io.File;
 import java.util.Locale;
 
-import jenkins.model.Jenkins;
+import hudson.model.Hudson;
 import net.sf.json.JSONObject;
 
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -290,7 +290,7 @@ public class AzureStorageBuilder extends Builder {
 		}
 
 		public StorageAccountInfo[] getStorageAccounts() {
-			WAStoragePublisher.WAStorageDescriptor publisherDescriptor = Jenkins
+			WAStoragePublisher.WAStorageDescriptor publisherDescriptor = Hudson
 					.getInstance().getDescriptorByType(
 							WAStoragePublisher.WAStorageDescriptor.class);
 
