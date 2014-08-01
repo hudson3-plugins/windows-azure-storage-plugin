@@ -66,9 +66,9 @@
 	</dependencies>
 	
 	<scm>
-		<connection>scm:git:git://github.com/hudson3-plugins/windows-azure-storage-plugin.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/hudson3-plugins/windows-azure-storage-plugin.git</developerConnection>
-		<url>https://github.com/hudson3-plugins/windows-azure-storage-plugin</url>
+		<connection>scm:git:git://github.com/hudson3-plugins/azure-slave-plugin.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/hudson3-plugins/azure-slave-plugin.git</developerConnection>
+		<url>https://github.com/hudson3-plugins/azure-slave-plugin</url>
 	  <tag>HEAD</tag>
   </scm>
 	
