@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 
 import hudson.model.Hudson;
 
+import org.springframework.security.Authentication;
+import org.eclipse.hudson.security.HudsonSecurityManager;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
 
@@ -23,13 +25,16 @@ public class AzureBlobAction implements RunAction {
 	private final AbstractBuild build;
 	private final String storageAccountName;
 	private final String containerName;
+	private final boolean allowAnonymousAccess;
 	private final List<AzureBlob> blobs;
 
-	public AzureBlobAction(AbstractBuild build, String storageAccountName, String containerName,  List<AzureBlob> blobs) {
+	public AzureBlobAction(AbstractBuild build, String storageAccountName, String containerName,  List<AzureBlob> blobs,
+			boolean allowAnonymousAccess) {
 		this.build = build;
 		this.storageAccountName = storageAccountName;
 		this.containerName = containerName;
 		this.blobs = blobs;
+		this.allowAnonymousAccess = allowAnonymousAccess;
 	}
 	
 	public String getDisplayName() {
@@ -69,20 +74,17 @@ public class AzureBlobAction implements RunAction {
 		return blobs;
 	}
 	
+	public boolean getAllowAnonymousAccess() {
+		return allowAnonymousAccess;
+	}
+	
 	private WAStoragePublisher.WAStorageDescriptor getWAStorageDescriptor() {
 		WAStoragePublisher.WAStorageDescriptor desc = Hudson.getInstance().getDescriptorByType(WAStoragePublisher.WAStorageDescriptor.class);
 		return desc;
 	}
 	
-	private String getSASURL() throws Exception{
+	private String getSASURL(StorageAccountInfo accountInfo) throws Exception {
 		try {
-			WAStorageDescriptor storageDesc = getWAStorageDescriptor();
-			StorageAccountInfo accountInfo =storageDesc.getStorageAccount(storageAccountName);
-			
-			if (accountInfo == null) {
-				return "";
-			}
-			
 			return WAStorageClient.generateSASURL(accountInfo.getStorageAccName(), accountInfo.getStorageAccountKey(), 
 					containerName, accountInfo.getBlobEndPointURL());
 		} catch (Exception e) {
@@ -93,8 +95,22 @@ public class AzureBlobAction implements RunAction {
 	}
 	
 	public void doProcessDownloadRequest(final StaplerRequest request, final StaplerResponse response) throws IOException, ServletException {
+		WAStorageDescriptor storageDesc = getWAStorageDescriptor();
+		StorageAccountInfo accountInfo  = storageDesc.getStorageAccount(storageAccountName);
+		
+		if (accountInfo == null) {
+			response.sendError(500, "Azure Storage account global configuration is missing");
+			return;
+		}
+		
+		if (!allowAnonymousAccess && isAnonymousAccess(HudsonSecurityManager.getAuthentication())) {
+			String url = request.getOriginalRequestURI();
+        	response.sendRedirect("/login?from=" + url);
+           	return;
+		}
+		
 		String queryPath = request.getRestOfPath();
-	    
+		
 		if (queryPath == null) {
 	          return;
 	    }
@@ -104,14 +120,21 @@ public class AzureBlobAction implements RunAction {
 		for (AzureBlob blob : blobs) {
 			if (blob.getBlobName().equals(blobName)) {
 				try {
-					response.sendRedirect2(blob.getBlobURL()+"?"+getSASURL());
+					response.sendRedirect2(blob.getBlobURL()+"?"+getSASURL(accountInfo));
 				} catch(Exception e) {
-					response.sendError(500, "Error occurred while downlaoding artifact "+e.getMessage());
+					response.sendError(500, "Error occurred while downloading artifact "+e.getMessage());
 				}
 				return;
 			}
 		}
 
 		response.sendError(404, "Azure artifact is not available");
+	}
+	
+	public boolean isAnonymousAccess(Authentication auth) {
+		if (auth != null && auth.getName() != null && "anonymous".equals(auth.getName())) {
+			return true;
+		}
+		return false;
 	}
 }
