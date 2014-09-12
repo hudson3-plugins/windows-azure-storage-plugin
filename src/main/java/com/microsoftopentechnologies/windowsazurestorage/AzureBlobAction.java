@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 
 import hudson.model.Hudson;
 
-import org.springframework.security.Authentication;
+import org.springframework.security.core.Authentication;
 import org.eclipse.hudson.security.HudsonSecurityManager;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
