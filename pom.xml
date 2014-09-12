@@ -18,7 +18,7 @@
 
     <groupId>com.microsoftopentechnologies</groupId>
     <artifactId>windows-azure-storage-plugin</artifactId>
-    <version>0.3.1-SNAPSHOT</version>
+    <version>0.3.0-SNAPSHOT</version>
     <packaging>hpi</packaging>
     <name>Windows Azure Storage plugin</name>
 	<description>Uploads build artifacts to Windows Azure storage</description>
@@ -69,7 +69,7 @@
 		<connection>scm:git:git://github.com/hudson3-plugins/windows-azure-storage-plugin.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/hudson3-plugins/windows-azure-storage-plugin.git</developerConnection>
 		<url>https://github.com/hudson3-plugins/windows-azure-storage-plugin</url>
-	  <tag>HEAD</tag>
+	    <tag>HEAD</tag>
   </scm>
 	
 	<build>
